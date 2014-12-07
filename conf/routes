@@ -1,0 +1,15 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET  /                       			   controllers.Application.index()
+GET  /dictionaries                         controllers.Dictionaries.listAll() 
+POST /dictionaries                         controllers.Dictionaries.add() 
+GET  /dictionaries/:dictionary/words       controllers.Dictionaries.view(dictionary: Long) 
+POST /dictionaries/:dictionary/words       controllers.Dictionaries.addWord(dictionary: Long)
+
+GET     /assets/javascripts/routes          controllers.Application.javascriptRoutes()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

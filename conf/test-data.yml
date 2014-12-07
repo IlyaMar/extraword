@@ -1,0 +1,68 @@
+﻿
+# Users
+
+- &bob !!models.User
+    name:       Bob
+    password:   secret
+    email:      bob@example.com
+
+- &jane !!models.User
+    name:       Jane
+    password:   secret
+    email:      jane@example.com
+
+- &jeff !!models.User
+    name:       Jeff
+    password:   secret
+    email:      jeff@example.com
+    
+# Dictionaries
+
+- &africa !!models.Dictionary
+    name:       Africa
+    description:     african slang from Tony Clark
+    owner: *bob
+
+- &cnn !!models.Dictionary
+    name:       CNN
+    description:     popular CNN news words
+    owner: *bob
+
+- &ukraine !!models.Dictionary
+    name:       Ukraine
+    description:     ukranian to russian
+    owner: *jane
+    shared: true
+
+
+# Word
+
+- !!models.Word
+    forward:      karoo
+    backward:     пустыня
+    dictionary:    *africa
+
+- !!models.Word
+    forward:      cheetah
+    backward:     гепард
+    dictionary:    *africa
+
+- !!models.Word
+    forward:      peninsula
+    backward:     полуостров
+    dictionary:    *cnn
+
+- !!models.Word
+    forward:      regime
+    backward:     правление
+    dictionary:    *cnn
+
+- !!models.Word
+    forward:      громадянин
+    backward:     гражданин
+    dictionary:    *ukraine
+
+- !!models.Word
+    forward:      зброя
+    backward:     оружие
+    dictionary:    *ukraine
