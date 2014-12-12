@@ -8,6 +8,8 @@ GET  /dictionaries                         controllers.Dictionaries.listAll()
 POST /dictionaries                         controllers.Dictionaries.add() 
 GET  /dictionaries/:dictionary/words       controllers.Dictionaries.view(dictionary: Long) 
 POST /dictionaries/:dictionary/words       controllers.Dictionaries.addWord(dictionary: Long)
+POST /login                       		   controllers.Application.login()
+GET  /logout                       		   controllers.Application.logout()
 
 GET     /assets/javascripts/routes          controllers.Application.javascriptRoutes()
 
