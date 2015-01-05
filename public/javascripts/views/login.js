@@ -7,11 +7,12 @@
 		// generate a new element
 		tagName: "div",
 		id: "login-view",
-		model: new app.Authentication(),
+		model: app.Authentication,
 	    template: _.template( $('#login-template').html() ),
 	
 		events: {
 		  'click .ok': 'login',
+          'keypress #user-password': 'keypress',
 		},
 		
 		initialize: function() {
@@ -22,6 +23,13 @@
 			console.log("LoginView render")
 			this.$el.html( this.template() );
 		},
+		
+	    keypress: function( event ) {
+			  if ( event.which !== ENTER_KEY ) {
+				return;
+			  }
+			this.login();
+		},
 
 		login: function() {
 			var d = {username: this.$('#user-name').val().trim(),	password: this.$('#user-password').val().trim()};
@@ -29,8 +37,10 @@
 			console.log(d);
 			this.model.save(d,
         			{
-						success: function(data) {
-							alert("login success");
+						success: function(model, data) {
+							console.log("logged in as " + data.userName);
+							app.Dicts.reset();
+							Backbone.history.navigate("/", {trigger: true});
 						},
 						
 						error: function(){

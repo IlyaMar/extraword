@@ -24,14 +24,18 @@ public class Application extends Controller {
     	System.out.println("Application.login, as " + un);
 
 		User u = User.authenticate(un, p);
-		if ( u == null)
-			return badRequest();
+		if ( u == null) {
+			ObjectNode result = Json.newObject();
+			result.put("loginFailed", true);
+			return badRequest(result);
+		}
 		
 		session().clear();
 		session("userName", un);
 		
 		ObjectNode result = Json.newObject();
 		result.put("userName", un);
+		result.put("loginAccepted", true);
 		return ok(result);
 	}
 

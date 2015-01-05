@@ -12,6 +12,13 @@
 
 	<script type="text/template" id="dicts-template">
 			<header id="dicts-header">
+			<%  if (app.Authentication.get('username')) {
+					print('<b>logged in as ' + app.Authentication.get('username') + '</b>')
+					print('<a href="#/logout">Logout</a>')
+				} 
+			%>
+				
+			
 				<h1>Select dictionary</h1>
 				<a href="#/login">Login</a>
 		        <a href="#/newdict">New dict</a>

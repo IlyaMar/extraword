@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 
 import play.db.ebean.Model;
 
+import com.avaje.ebean.Expr;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -70,6 +71,10 @@ public class Dictionary extends Model {
 			return toUser.name.equals(owner.name);
 	}
 
+	public static List<Dictionary> getVisibleDictionaries(String owner) {
+		return find.where().or(Expr.eq("owner.name", owner), Expr.eq("shared", true)).findList();
+	}
+	
 	public static List<Dictionary> getOwnDictionaries(User owner) {
 		return find.where().eq("owner", owner).findList();
 	}

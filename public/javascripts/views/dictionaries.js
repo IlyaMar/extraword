@@ -19,11 +19,11 @@
 		},
 		
 		initialize: function() {
-			console.log("DictsView initialize")
+			console.log("DictsView initialize, current length " + app.Dicts.length);
 			this.$el.html( this.template() );
-			app.Dicts.each(this.addOne, this)
-			console.log(app.Dicts.length)
-			
+			//app.Dicts.reset();
+
+			app.Dicts.each(this.addOne, this)			
 			this.listenTo(app.Dicts, 'add', this.addOne);
 			app.Dicts.fetch();
 		},

@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Dictionary;
+import models.User;
 import models.Word;
 import play.libs.Json;
 import play.mvc.BodyParser;
@@ -17,8 +18,12 @@ public class Dictionaries extends Controller {
 	
 	public static Result listAll() {
     	System.out.println("Dictionaries.listAll");
-		List<models.Dictionary> dl = models.Dictionary.find.all();
-		JsonNode j = Json.toJson(dl); 
+    	//List<Dictionary> dicts = models.Dictionary.getSharedDictionaries();
+    	String userName = Http.Context.current().session().get("userName");
+		//User u = User.find.byId(userName);
+		List<Dictionary> dicts = models.Dictionary.getVisibleDictionaries(userName);
+		//List<models.Dictionary> dl = models.Dictionary.find.all();
+		JsonNode j = Json.toJson(dicts); 
 		return ok(j);		
 	}
 	

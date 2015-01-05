@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	app.Authentication = Backbone.Model.extend({
+	var AuthClass = Backbone.Model.extend({
 		defaults: {
 			username: "",
 			password: "",
@@ -15,5 +15,6 @@
 		url: "login"
 	});
 	
+	app.Authentication = new AuthClass();
 })();
 
