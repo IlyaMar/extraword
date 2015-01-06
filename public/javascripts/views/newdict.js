@@ -40,7 +40,7 @@
 			}
 		
 			var a = {'name' : name, 'description' : description};
-			var d = app.Dicts.create(a, {wait: true});
+			var d = app.dict_list.create(a, {wait: true});
 			console.log("created dict " + d);
 			
 			//app.Words.resetUrl(d.id);

@@ -19,23 +19,29 @@
 		},
 		
 		initialize: function() {
-			console.log("DictsView initialize, current length " + app.Dicts.length);
-			this.$el.html( this.template() );
-			//app.Dicts.reset();
+			// collection is passed in constructor
+			console.log("DictsView initialize, current length " + this.collection.length);
+			//this.collection.bind('add', this.addDictItem, this);
+			//this.collection.bind('reset', this.render, this);
+			//this.collection.on('change', this.render, this);
+			//app.dict_list.reset();
 
-			app.Dicts.each(this.addOne, this)			
-			this.listenTo(app.Dicts, 'add', this.addOne);
-			app.Dicts.fetch();
+			this.listenTo(this.collection, 'reset', this.render);
+			this.listenTo(this.collection, 'add', this.addDictItem);
+			//this.collection.fetch();
+			//this.$el.html( this.template() );
 		},
 
-		addOne: function(dict) {
-			console.log(dict)
+		addDictItem: function(dict) {
+			console.log("addDictItem");
 			this.$('#dicts-table').append( this.templateDict( {d : dict}) );
 		},
 		
 		render: function() {
-			//app.Dicts.each(this.addOne, this);
-
+			console.log("dict list render");
+			this.$el.html( this.template() );
+			this.collection.each(this.addDictItem, this);
+			return this;
 		},
 		
   });

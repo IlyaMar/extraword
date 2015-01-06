@@ -33,25 +33,23 @@
       this.$footer = this.$('#footer');
       this.$main = this.$('#main');
 
-	  this.addAll();
+	  //this.addAll();
 	  //app.Words.each(this.addOne, this)
-	  this.listenTo(app.Words, 'add', this.addOne);
-      //this.listenTo(app.Words, 'reset', this.addAll);	  
+	  this.listenTo(this.collection, 'add', this.addOne);
+      this.listenTo(this.collection, 'reset', this.render);	  
 	  
-      app.Words.fetch();
-	  
-	  this.listenTo(app.Words, 'change:completed', this.filterOne);
-      this.listenTo(app.Words, 'filter', this.filterAll);
-      //this.listenTo(app.Words, 'all', this.render);
-	  //app.Words.trigger('reset');
+	  this.listenTo(this.collection, 'change:completed', this.filterOne);
+      this.listenTo(this.collection, 'filter', this.filterAll);
     },
     
 	 // Rerendering the app just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
 	  console.log('AppView render')
-	
-      var completed = app.Words.completed().length;
+	  this.$el.html( this.template() );
+	  this.collection.each(this.addOne, this);
+
+      /*var completed = app.Words.completed().length;
       var remaining = app.Words.remaining().length;
       if ( app.Words.length ) {
         this.$main.show();
@@ -68,23 +66,23 @@
         this.$main.hide();
         this.$footer.hide();
       }
-      this.allCheckbox.checked = !remaining;
+      this.allCheckbox.checked = !remaining;*/
 	  return this
     },
 	
 	// Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
     addOne: function( todo ) {
-		console.log('AppView addOne')
+	  console.log('AppView addOne')
       var view = new app.WordView({ model: todo });
       this.$('#word-table').append( view.render().el );
     },
     
 	// Add all items in the **Words** collection at once.
-    addAll: function() {
+    /*addAll: function() {
       this.$('#word-table').html('');
       app.Words.each(this.addOne, this);
-    },
+    },*/
 	
 	filterOne : function (todo) {
 		todo.trigger('visible');

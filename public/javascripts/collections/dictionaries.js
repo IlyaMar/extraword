@@ -11,6 +11,6 @@ var app = app || {};
     
   });
   // Create our global collection of words.
-  app.Dicts = new DictList();
+  app.dict_list = new DictList();
   
 })();

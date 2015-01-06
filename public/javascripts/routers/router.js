@@ -22,26 +22,24 @@ var app = app || {};
 		},
 		
 		listdicts : function () {
-			var v = new app.DictionariesView();
+			var v = new app.DictionariesView({collection : app.dict_list});
+			app.dict_list.fetch();
 			this.loadView(v);
-			document.body.appendChild( this.view.el );
 		},
 
 		newdict : function () {
 			var v = new app.NewDictionaryView();
 			this.loadView(v);
-			document.body.appendChild( this.view.el );
 		},
 
 		selectDict: function(id) {
 			app.Words.resetUrl(id);
-			this.loadView(new app.AppView());
-			document.body.appendChild( this.view.el );
+			app.Words.fetch();
+			this.loadView(new app.AppView({collection : app.Words}));
 		},
 
 		login: function(id) {
 			this.loadView(new app.LoginView());
-			document.body.appendChild( this.view.el );
 		},
 		
 		setFilter: function( param ) {
@@ -66,6 +64,7 @@ var app = app || {};
 			console.log('DictionaryRouter loadView, view el #' + view.el.id)
 			this.view && (this.view.close ? this.view.close() : this.view.remove());
 			this.view = view;
+			document.body.appendChild( this.view.render().el );
 		}
 		
 	});

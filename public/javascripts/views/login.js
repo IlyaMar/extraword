@@ -39,7 +39,7 @@
         			{
 						success: function(model, data) {
 							console.log("logged in as " + data.userName);
-							app.Dicts.reset();
+							app.dict_list.reset();
 							Backbone.history.navigate("/", {trigger: true});
 						},
 						
