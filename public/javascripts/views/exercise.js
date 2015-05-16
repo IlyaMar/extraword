@@ -12,6 +12,8 @@ var app = app || {};
 	    templateComplete: _.template( $('#exercise-complete-template').html() ),
 
 		wordIndex: 0,
+		currentRight: 0,
+		currentWrong: 0,
 		
 		events: {
 		  'click .correct': 'correct',
@@ -37,6 +39,8 @@ var app = app || {};
 				this.$el.html(this.template( {'forward' : word.get('forward'), 
 											  'backward' : word.get('backward') })
 											  );
+				this.currentRight = word.get('right');
+				this.currentWrong = word.get('wrong');
 			}
 			else {
 				console.log("ExerciseView render 2");
@@ -50,8 +54,8 @@ var app = app || {};
 		correct: function() {
 			console.log("ExView correct");
 			var word = app.Words.at(this.wordIndex);
-			word.right++;
-			word.wrong--;
+			this.currentRight++;
+			this.currentWrong--;
 			this.wordsCorrect++;
 		},
 		
@@ -63,9 +67,9 @@ var app = app || {};
 		nextWord: function() {
 			console.log("ExView next");
 			var word = app.Words.at(this.wordIndex);
-			word.wrong++;
+			this.currentWrong++;
+			word.save({right : this.currentRight, wrong : this.currentWrong });
 			this.wordsAsked++;
-			
 			this.wordIndex++;	// now iterating is linear, plans to make it random
 			this.render();
 		}
