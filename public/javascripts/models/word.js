@@ -1,7 +1,7 @@
- var app = app || {};
+'use strict';
+var app = app || {};
 
 (function () {
-	'use strict';
 
 	app.Word = Backbone.Model.extend({
 		defaults: {
@@ -11,7 +11,8 @@
 			wrong: 0,
 			completed: false		// marked as already learned
 		},
-		// Toggle the `completed` state of this todo item.
+
+		// toggle the `completed` state
 		toggle: function() {
 			console.log('Word toggle');
 			this.save({ completed: !this.get('completed') });

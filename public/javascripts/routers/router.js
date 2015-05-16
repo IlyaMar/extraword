@@ -1,7 +1,7 @@
+'use strict';
 var app = app || {};
 
 (function () {
-	'use strict';
 
 	// possible states
 	// #/ (all - default)
@@ -15,7 +15,6 @@ var app = app || {};
 			'dict/:id':  'selectDict',
 			'login':   'login',
 			'logout':   'logout',
-			'*filter': 'setFilter'
 		},
 		
 		initialize: function() {
@@ -49,23 +48,9 @@ var app = app || {};
 			this.loadView(v);
 		},
 		
-		setFilter: function( param ) {
-			console.log('DictionaryRouter setFilter to ' + param);
-
-			// Set the current filter to be used
-			app.WordFilter = param || '';
-			
-			// Trigger a collection filter event, causing hiding/unhiding of Todo view items
-			app.Words.trigger('filter');
-		},
-		
 		exercise : function () {
-			var v = new app.ExerciseView();
-			this.loadView(v);
-			document.body.appendChild( this.view.el );
+			this.loadView(new app.ExerciseView());
 		},
-
-
 		
 		loadView : function(view) {
 			console.log('DictionaryRouter loadView, view el #' + view.el.id);

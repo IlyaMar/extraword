@@ -1,7 +1,7 @@
- var app = app || {};
+'use strict';
+var app = app || {};
 
 (function () {
-	'use strict';
 
 	app.ExerciseView = Backbone.View.extend({
 		// generate a new element
@@ -20,26 +20,26 @@
 		},
 		
 		initialize: function() {
-			console.log("ExerciseView initialize")
+			console.log("ExerciseView initialize");
 			this.wordIndex = 0;		// iterate words from start
 			this.wordsAsked = 1;	// current exercise statistics
 			this.wordsCorrect = 0;
 			
-			this.render();
-			app.Words.fetch();
-			console.log(app.Words.size())
+			//this.render();
+			//app.Words.fetch();
+			console.log(app.Words.size());
 		},
 
 		render: function() {
 			if (this.wordIndex < app.Words.size()) {
-				console.log("ExerciseView render 1")
-				var word = app.Words.at(this.wordIndex)
+				console.log("ExerciseView render 1");
+				var word = app.Words.at(this.wordIndex);
 				this.$el.html(this.template( {'forward' : word.get('forward'), 
 											  'backward' : word.get('backward') })
 											  );
 			}
 			else {
-				console.log("ExerciseView render 2")
+				console.log("ExerciseView render 2");
 				this.$el.html(this.templateComplete({'dictionary': 'D1',
 													 'asked': this.wordsAsked,
 													 'correct': this.wordsCorrect} ));

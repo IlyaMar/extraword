@@ -1,7 +1,7 @@
+'use strict';
  var app = app || {};
 
 (function () {
-	'use strict';
 
 	app.Dictionary = Backbone.Model.extend({
 		defaults: {

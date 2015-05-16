@@ -57,6 +57,7 @@
 				<input id="new-word-forward" placeholder="new word - forward" autofocus>
 				<input id="new-word-backward" placeholder="new word - backward">
 				<a href="#/">Back</a>
+		        <a href="#/exercise">Exercise!</a>
 			</header>
 			<section id="main">
 				<input id="toggle-all" type="checkbox">
@@ -74,7 +75,6 @@
 					</tbody>
 				</table>
 			</section>
-			<footer id="footer"></footer>
 	</script>
 	
 	<script type="text/template" id="word-template">
@@ -86,28 +86,6 @@
 		<td><button class="destroy">D</button></td>
 	</script>
 	
- <script type="text/template" id="stats-template">
-    <span id="todo-count"><strong><%= remaining %></strong> 
-    <%= remaining === 1 ? 'item' : 'items' %> left</span>
-    <ul id="filters">
-      <li>
-        <a class="selected" href="#/">All</a>
-      </li>
-      <li>
-        <a href="#/active">Active</a>
-      </li>
-      <li>
-        <a href="#/completed">Completed</a>
-      </li>
-      <li>
-        <a href="#/exercise">Exercise!</a>
-      </li>
-    </ul>
-   <% if (completed) { %>
-    <button id="clear-completed">Clear completed (<%= completed %>)</button>
-    <% } %>
-  </script>
-
 	<script type="text/template" id="exercise-template">
 		<h1><%- forward %></h1>
 		<h1 class="hidden"><%- backward %></h1>

@@ -1,8 +1,8 @@
+'use strict';
 
  var app = app || {};
 
 (function () {
-	'use strict';
 
 	var AuthClass = Backbone.Model.extend({
 		defaults: {

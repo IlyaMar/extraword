@@ -1,7 +1,7 @@
- var app = app || {};
+'use strict';
+var app = app || {};
 
 (function () {
-	'use strict';
 
 	app.DictionariesView = Backbone.View.extend({
 		// generate a new element
@@ -21,15 +21,8 @@
 		initialize: function() {
 			// collection is passed in constructor
 			console.log("DictsView initialize, current length " + this.collection.length);
-			//this.collection.bind('add', this.addDictItem, this);
-			//this.collection.bind('reset', this.render, this);
-			//this.collection.on('change', this.render, this);
-			//app.dict_list.reset();
-
 			this.listenTo(this.collection, 'reset', this.render);
 			this.listenTo(this.collection, 'add', this.addDictItem);
-			//this.collection.fetch();
-			//this.$el.html( this.template() );
 		},
 
 		addDictItem: function(dict) {

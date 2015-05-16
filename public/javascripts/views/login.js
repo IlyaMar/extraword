@@ -1,7 +1,7 @@
- var app = app || {};
+'use strict';
+var app = app || {};
 
 (function () {
-	'use strict';
 
 	app.LoginView = Backbone.View.extend({
 		// generate a new element
@@ -20,15 +20,14 @@
 		},
 		
 		render: function() {
-			console.log("LoginView render")
+			console.log("LoginView render");
 			this.$el.html( this.template() );
 			return this;
 		},
 		
 	    keypress: function( event ) {
-			  if ( event.which !== ENTER_KEY ) {
+			  if ( event.which !== ENTER_KEY )
 				return;
-			  }
 			this.login();
 		},
 

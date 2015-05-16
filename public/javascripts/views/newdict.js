@@ -1,7 +1,7 @@
- var app = app || {};
+'use strict';
+var app = app || {};
 
 (function () {
-	'use strict';
 
 	app.NewDictionaryView = Backbone.View.extend({
 		// generate a new element
@@ -16,7 +16,6 @@
 		
 		initialize: function() {
 			console.log("NewDictionaryView initialize");
-			this.wordIndex = 0;		// iterate words from start
 			this.wordsAsked = 1;	// current exercise statistics
 			this.wordsCorrect = 0;
 		},
@@ -31,17 +30,14 @@
 			var name = this.$('#newdict-name').val().trim();
 			var description = this.$('#newdict-description').val().trim();
 			console.log("NewDictView create, name " + name);
-			if ( !name) {
+			if (!name) {
 				alert('Name is empty!');
 				return;
 			}
 		
 			var a = {'name' : name, 'description' : description};
 			var d = app.dict_list.create(a, {wait: true});
-			console.log("created dict " + d);
-			
-			//app.Words.resetUrl(d.id);
-			//app.Words.reset();
+			console.log("dict created");
 			
 			app.DictionaryRouter.navigate("/", {trigger: true});
 		},
