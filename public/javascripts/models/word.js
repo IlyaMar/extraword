@@ -7,8 +7,8 @@
 		defaults: {
 			forward: '',
 			backward: '',
-			test_count: 0,
-			correct_count: 0,
+			right: 0,
+			wrong: 0,
 			completed: false		// marked as already learned
 		},
 		// Toggle the `completed` state of this todo item.

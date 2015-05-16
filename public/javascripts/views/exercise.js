@@ -14,7 +14,6 @@
 		wordIndex: 0,
 		
 		events: {
-		  'keypress #new-word-backward': 'createOnEnter',
 		  'click .correct': 'correct',
 		  'click .check': 'check',
 		  'click .next': 'nextWord'
@@ -45,12 +44,14 @@
 													 'asked': this.wordsAsked,
 													 'correct': this.wordsCorrect} ));
 			}
+		    return this;
 		},
 		
 		correct: function() {
 			console.log("ExView correct");
 			var word = app.Words.at(this.wordIndex);
-			word.correct_count++;
+			word.right++;
+			word.wrong--;
 			this.wordsCorrect++;
 		},
 		
@@ -62,7 +63,7 @@
 		nextWord: function() {
 			console.log("ExView next");
 			var word = app.Words.at(this.wordIndex);
-			word.test_count++;
+			word.wrong++;
 			this.wordsAsked++;
 			
 			this.wordIndex++;	// now iterating is linear, plans to make it random

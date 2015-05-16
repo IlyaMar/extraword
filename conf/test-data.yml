@@ -57,12 +57,25 @@
     backward:     правление
     dictionary:    *cnn
 
-- !!models.Word
+- &w1 !!models.Word
     forward:      громадянин
     backward:     гражданин
     dictionary:    *ukraine
 
-- !!models.Word
+- &w2 !!models.Word
     forward:      зброя
     backward:     оружие
     dictionary:    *ukraine
+    
+# Learned
+- !!models.Learned
+    right:  2
+    wrong: 4
+    word:    *w1
+    user:  *jane
+
+- !!models.Learned
+    right:  1
+    wrong: 1
+    word:    *w2
+    user:  *jane

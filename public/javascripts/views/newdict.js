@@ -15,19 +15,16 @@
 		},
 		
 		initialize: function() {
-			console.log("NewDictionaryView initialize")
+			console.log("NewDictionaryView initialize");
 			this.wordIndex = 0;		// iterate words from start
 			this.wordsAsked = 1;	// current exercise statistics
 			this.wordsCorrect = 0;
-			
-			this.render();
-			app.Words.fetch();
-			console.log(app.Words.size())
 		},
 
 		render: function() {
-			console.log("NewDictionaryView render")
-			this.$el.html(this.template({}))
+			console.log("NewDictionaryView render");
+			this.$el.html(this.template({}));
+			return this;
 		},
 		
 		create: function() {

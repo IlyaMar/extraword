@@ -4,6 +4,7 @@ import models.User;
 import play.Routes;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import views.html.index;
 
@@ -19,7 +20,7 @@ public class Application extends Controller {
 
 	public static Result login() {
 		JsonNode json = request().body().asJson();
-		String un = json.findPath("username").textValue();
+		String un = json.findPath("userName").textValue();
 		String p = json.findPath("password").textValue();
     	System.out.println("Application.login, as " + un);
 
@@ -34,12 +35,14 @@ public class Application extends Controller {
 		session("userName", un);
 		
 		ObjectNode result = Json.newObject();
+		result.put("id", un);
 		result.put("userName", un);
 		result.put("loginAccepted", true);
 		return ok(result);
 	}
 
 	public static Result logout() {
+		System.out.println("logged out " + session().get("userName"));
 	    session().clear();
 	    return ok();
 	}

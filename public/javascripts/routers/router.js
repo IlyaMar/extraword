@@ -14,11 +14,12 @@ var app = app || {};
 			'newdict': 'newdict',
 			'dict/:id':  'selectDict',
 			'login':   'login',
+			'logout':   'logout',
 			'*filter': 'setFilter'
 		},
 		
 		initialize: function() {
-			console.log('DictionaryRouter initialize')
+			console.log('DictionaryRouter initialize');
 		},
 		
 		listdicts : function () {
@@ -38,12 +39,18 @@ var app = app || {};
 			this.loadView(new app.AppView({collection : app.Words}));
 		},
 
-		login: function(id) {
+		login: function() {
 			this.loadView(new app.LoginView());
+		},
+
+		logout: function() {
+			var v = new app.LoginView();
+			v.logout();
+			this.loadView(v);
 		},
 		
 		setFilter: function( param ) {
-			console.log('DictionaryRouter setFilter to ' + param)
+			console.log('DictionaryRouter setFilter to ' + param);
 
 			// Set the current filter to be used
 			app.WordFilter = param || '';
@@ -61,7 +68,7 @@ var app = app || {};
 
 		
 		loadView : function(view) {
-			console.log('DictionaryRouter loadView, view el #' + view.el.id)
+			console.log('DictionaryRouter loadView, view el #' + view.el.id);
 			this.view && (this.view.close ? this.view.close() : this.view.remove());
 			this.view = view;
 			document.body.appendChild( this.view.render().el );

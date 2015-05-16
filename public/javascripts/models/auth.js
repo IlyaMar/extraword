@@ -6,7 +6,7 @@
 
 	var AuthClass = Backbone.Model.extend({
 		defaults: {
-			username: "",
+			userName: "",
 			password: "",
 			rememberMe: false,
 			loginFailed: false,

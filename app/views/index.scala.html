@@ -12,14 +12,16 @@
 
 	<script type="text/template" id="dicts-template">
 			<header id="dicts-header">
-			<%  if (app.Authentication.get('username')) {
-					print('<b>logged in as ' + app.Authentication.get('username') + '</b>  ')
+			<%  if (app.Authentication.get('userName')) {
+					print('<b>logged in as ' + app.Authentication.get('userName') + '</b>  ')
 					print('<a href="#/logout">Logout</a>')
-				} 
+				}
+				else {
+					print('<a href="#/login">Login</a>')
+				}
 			%>
 			
 				<h1>Select dictionary</h1>
-				<a href="#/login">Login</a>
 		        <a href="#/newdict">New dict</a>
 			</header>
 			<section id="dicts-main">
@@ -65,6 +67,8 @@
 							<th>select</th>
 							<th>Forward</th>
 							<th>Backward</th>
+							<th>Right</th>
+							<th>Wrong</th>
 							<th>Destroy</th>
 						</tr>
 					</tbody>
@@ -77,6 +81,8 @@
 		<td><input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %> ></td>
 		<td><label><%- forward %></label></td>
 		<td><label><%- backward %></label></td>
+		<td><label><%- right %></label></td>
+		<td><label><%- wrong %></label></td>
 		<td><button class="destroy">D</button></td>
 	</script>
 	

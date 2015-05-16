@@ -3,7 +3,6 @@
 (function () {
  'use strict';
 
- // Todo Item View
   // --------------
   // The DOM element for a word...
   app.WordView = Backbone.View.extend({
@@ -35,7 +34,7 @@
 
     // Rerenders the titles of the todo item.
     render: function() {
-		console.log('WordView render, ' + this.model.get('forward'))
+		console.log('WordView render, ' + this.model.get('forward'));
       this.$el.html( this.template( this.model.toJSON() ) );
 		this.$el.toggleClass( 'completed', this.model.get('completed') );
 		this.toggleVisible();

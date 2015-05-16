@@ -27,11 +27,6 @@
     initialize: function() {
 		console.log('AppView initialize');
 	  this.$el.html( this.template() );
-      this.allCheckbox = this.$('#toggle-all')[0];
-      this.$inputForward = this.$('#new-word-forward');
-      this.$inputBackward = this.$('#new-word-backward');
-      this.$footer = this.$('#footer');
-      this.$main = this.$('#main');
 
 	  //this.addAll();
 	  //app.Words.each(this.addOne, this)
@@ -45,8 +40,14 @@
 	 // Rerendering the app just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-	  console.log('AppView render')
+	  console.log('AppView render');
 	  this.$el.html( this.template() );
+      this.$inputForward = this.$('#new-word-forward');
+      this.$inputBackward = this.$('#new-word-backward');
+      this.allCheckbox = this.$('#toggle-all')[0];
+      this.$footer = this.$('#footer');
+      this.$main = this.$('#main');
+      
 	  this.collection.each(this.addOne, this);
 
       /*var completed = app.Words.completed().length;
@@ -67,14 +68,12 @@
         this.$footer.hide();
       }
       this.allCheckbox.checked = !remaining;*/
-	  return this
+	  return this;
     },
 	
-	// Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addOne: function( todo ) {
-	  console.log('AppView addOne')
-      var view = new app.WordView({ model: todo });
+    addOne: function( word ) {
+	  console.log('AppView addOne');
+      var view = new app.WordView({ model: word });
       this.$('#word-table').append( view.render().el );
     },
     
@@ -108,6 +107,8 @@
       if ( event.which !== ENTER_KEY ) {
         return;
       }
+      console.log(this.$inputForward.val() + this.$inputBackward.val());
+      
 		if ( !this.$inputForward.val().trim() || !this.$inputBackward.val().trim()) {
 			alert('Word incomplete!')
 			return;
