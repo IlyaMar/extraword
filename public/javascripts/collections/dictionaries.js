@@ -11,5 +11,6 @@ var app = app || {};
   });
   // global collection of dictionaries
   app.dict_list = new DictList();
-  
+  app.dict_list.fetch();			
+
 })();

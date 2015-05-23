@@ -33,9 +33,10 @@ var app = app || {};
 		},
 
 		selectDict: function(id) {
+			var dict = app.dict_list.get(id);
 			app.Words.resetUrl(id);
 			app.Words.fetch();
-			this.loadView(new app.AppView({collection : app.Words}));
+			this.loadView(new app.DictView({dict: dict, words: app.Words}));
 		},
 
 		login: function() {

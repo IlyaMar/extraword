@@ -4,9 +4,9 @@ var app = app || {};
 (function () {
  
   // Word list. Main piece of UI.
-  app.AppView = Backbone.View.extend({
+  app.DictView = Backbone.View.extend({
 	tagName: "section",
-	id: "dictionary-app",
+	id: "dict-view",
 	 
     template: _.template( $('#dict-template').html() ),
 	
@@ -14,15 +14,19 @@ var app = app || {};
       'keypress #new-word-backward': 'createOnEnter',
     },
 	
-    initialize: function() {
-	  console.log('AppView initialize');
+    initialize: function(options) {
+	  console.log('DictView initialize');
+	  this.model = options.dict;
+	  if (this.model == undefined)		// dict list is not loaded
+		  this.model = new app.Dictionary();
+	  this.collection = options.words;
 	  this.listenTo(this.collection, 'add', this.addOne);
 	  this.listenTo(this.collection, 'reset', this.render);	  
     },
     
     render: function() {
-	  console.log('AppView render');
-	  this.$el.html( this.template() );
+	  console.log('DictView render');
+	  this.$el.html( this.template(this.model.toJSON()) );
       this.$inputForward = this.$('#new-word-forward');
       this.$inputBackward = this.$('#new-word-backward');
       this.$main = this.$('#main');
@@ -32,7 +36,7 @@ var app = app || {};
     },
 	
     addOne: function( word ) {
-	  console.log('AppView addOne');
+	  console.log('DictView addOne');
       var view = new app.WordView({ model: word });
       this.$('#word-table').append( view.render().el );
     },
@@ -57,7 +61,7 @@ var app = app || {};
 		}
 		
 	   var a = this.newAttributes();
- 	   console.log('AppView createOnEnter, attrs ' + a);
+ 	   console.log('DictView createOnEnter, attrs ' + a);
       app.Words.create(a);
       this.$inputForward.val('');
       this.$inputBackward.val('');

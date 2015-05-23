@@ -38,9 +38,9 @@
 	</script>
 	<script type="text/template" id="dictrow-template">
 		<tr>
-			<td><a href="#/dict/<% print(d.get('id')) %>"><% print(d.get('name')) %></a></td>
-			<td><% print(d.get('ownerName')) %></td>
-			<td><% print(d.get('wordCount')) %></td>
+			<td><a href="#/dict/<%- id %>"><%- name %></a></td>
+			<td><%- ownerName %></td>
+			<td><%- wordCount %></td>
 		</tr>
 	</script>
 	<script type="text/template" id="newdict-template">
@@ -53,7 +53,8 @@
 	
 	<script type="text/template" id="dict-template">
 			<header id="header">
-				<h1>Dictionary d1</h1>
+				<h1>Dictionary <%- name %></h1>
+				<h2>description: <%- description %></h2>
 				<input id="new-word-forward" placeholder="new word - forward" autofocus>
 				<input id="new-word-backward" placeholder="new word - backward">
 				<a href="#/">Back</a>
@@ -108,9 +109,9 @@
   <script src="@routes.Assets.at("javascripts/collections/dictionaries.js")"></script>
   <script src="@routes.Assets.at("javascripts/views/login.js")"></script>
   <script src="@routes.Assets.at("javascripts/views/dictionaries.js")"></script>
+  <script src="@routes.Assets.at("javascripts/views/dict.js")"></script>
   <script src="@routes.Assets.at("javascripts/views/newdict.js")"></script>
   <script src="@routes.Assets.at("javascripts/views/word.js")"></script>
-  <script src="@routes.Assets.at("javascripts/views/app.js")"></script>
   <script src="@routes.Assets.at("javascripts/views/exercise.js")"></script>
   <script src="@routes.Assets.at("javascripts/app.js")"></script>
   <script src="@routes.Assets.at("javascripts/routers/router.js")"></script>
