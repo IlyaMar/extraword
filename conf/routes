@@ -8,6 +8,7 @@ GET  /dictionaries                         controllers.Dictionaries.listAll()
 POST /dictionaries                         controllers.Dictionaries.add() 
 GET  /dictionaries/:dictionary/words       controllers.Dictionaries.view(dictionary: Long) 
 POST /dictionaries/:dictionary/words       controllers.Dictionaries.addWord(dictionary: Long)
+PUT /dictionaries/:dictionary/words/:word       controllers.Dictionaries.modifyWord(dictionary: Long, word: Long)
 POST 	/login                       		   controllers.Application.login()
 DELETE  /login                       		   controllers.Application.logout()
 

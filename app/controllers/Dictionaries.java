@@ -88,7 +88,7 @@ public class Dictionaries extends Controller {
 		return ok();
 	}
 
-	
+
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result addWord(Long dictId) {
     	System.out.println("Dictionaries.add, dict " + dictId);
@@ -120,6 +120,28 @@ public class Dictionaries extends Controller {
 		}
 	}
 
+	@BodyParser.Of(BodyParser.Json.class)
+	public static Result modifyWord(Long dictId, Long wordId) {
+		System.out.println("Dictionaries.modifyWord");
+		models.Word w = models.Word.find.ref(wordId);
+		
+		JsonNode json = request().body().asJson();
+		String userName = session().get("userName");
+		User u = User.find.byId(userName);
+		models.Learned l = Learned.getOne(w, u);
+		if (l==null)
+			l = Learned.create(w, u);
+		
+
+		l.right = json.findPath("right").asLong();
+		l.wrong = json.findPath("wrong").asLong();
+		l.save();
+
+		return ok();
+	}
+
+	
+	
 	public static Result delete(Long wordId) {
 		return ok();
 	}
