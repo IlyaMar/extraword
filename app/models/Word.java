@@ -29,6 +29,10 @@ public class Word extends Model {
       this.dictionary = dictionary;
     }
 
+    public String toString() {
+    	return "" + id + " " + forward;
+    }
+    
 	public static Word create(String forward, String backward, String context, Long dictId) {
         Word w = new Word(forward, backward, context, models.Dictionary.find.ref(dictId));
         w.save();
@@ -37,5 +41,5 @@ public class Word extends Model {
 	
     public static Finder<Long,Word> find = new Finder<Long,Word>(
         Long.class, Word.class
-    ); 
+    );
 }

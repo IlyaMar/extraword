@@ -17,16 +17,12 @@ var app = app || {};
 		'click .destroy': 'clear'
     },
 
-    // The WordView listens for changes to its model, rerendering. Since there's
-    // a one-to-one correspondence between a **Word** and a **WordView** in this
-    // app, we set a direct reference on the model for convenience.
     initialize: function() {
 		console.log('WordView initialize');
         this.listenTo(this.model, 'change', this.render);
 		this.listenTo(this.model, 'destroy', this.remove);
     },
 
-    // Rerenders the titles of the todo item.
     render: function() {
 		console.log('WordView render, ' + this.model.get('forward'));
         this.$el.html( this.template( this.model.toJSON() ) );

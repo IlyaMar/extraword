@@ -55,6 +55,7 @@ public class Dictionaries extends Controller {
 			}	
 			o.put("right", right);
 			o.put("wrong", wrong);
+			o.put("wrong", wrong);
 			a.add(jw);
 		}
 		return ok(a);		
@@ -92,8 +93,7 @@ public class Dictionaries extends Controller {
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result addWord(Long dictId) {
     	System.out.println("Dictionaries.add, dict " + dictId);
-		
-		 JsonNode json = request().body().asJson();
+		JsonNode json = request().body().asJson();
 		
 		models.Dictionary d = models.Dictionary.find.ref(dictId);
 		String userName = Http.Context.current().session().get("userName");
@@ -109,12 +109,9 @@ public class Dictionaries extends Controller {
 				    return badRequest("Empty parameters");
 			  }
 			
-			Word newWord = models.Word.create(f, b,	null, dictId);
-			System.out.println("created word " + newWord.id);
-			/*return redirect(
-				routes.Dictionaries.view(dictId)
-			);*/
-            return ok();
+			Word w = models.Word.create(f, b,	null, dictId);
+			System.out.println("created word " + w.id);
+            return ok(Json.toJson(w));		// TODO return only id
 		} else {
 			return forbidden();
 		}
@@ -124,6 +121,9 @@ public class Dictionaries extends Controller {
 	public static Result modifyWord(Long dictId, Long wordId) {
 		System.out.println("Dictionaries.modifyWord");
 		models.Word w = models.Word.find.ref(wordId);
+		System.out.println(w);
+		if (w == null)
+			return badRequest("Word with id " + wordId + " not found");
 		
 		JsonNode json = request().body().asJson();
 		String userName = session().get("userName");
@@ -140,7 +140,16 @@ public class Dictionaries extends Controller {
 		return ok();
 	}
 
-	
+	public static Result deleteWord(Long dictId, Long wordId) {
+		System.out.println("Dictionaries.deleteWord");
+		models.Word w = models.Word.find.ref(wordId);
+		if (w == null)
+			return badRequest("Word with id " + wordId + " not found");
+		else {
+			w.delete();
+			return ok();
+		}
+	}
 	
 	public static Result delete(Long wordId) {
 		return ok();
