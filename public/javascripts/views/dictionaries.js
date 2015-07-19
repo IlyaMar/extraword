@@ -27,6 +27,7 @@ var app = app || {};
 
 		addDictItem: function(dict) {
 			console.log("addDictItem");
+			console.log(dict.toJSON());
 			this.$('#dicts-table').append( this.templateDict(dict.toJSON()));
 		},
 		

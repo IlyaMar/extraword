@@ -151,7 +151,9 @@ public class Dictionaries extends Controller {
 		}
 	}
 	
-	public static Result delete(Long wordId) {
+	public static Result delete(Long dictId) {
+		System.out.println("Dictionaries.delete, " + dictId);
+		models.Dictionary.find.ref(dictId).delete();
 		return ok();
 	}
 

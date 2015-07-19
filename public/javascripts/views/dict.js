@@ -12,6 +12,7 @@ var app = app || {};
 	
     events: {
       'keypress #new-word-backward': 'createOnEnter',
+      'click .delete': 'drop'
     },
 	
     initialize: function(options) {
@@ -66,6 +67,18 @@ var app = app || {};
       this.$inputForward.val('');
       this.$inputBackward.val('');
     },
+
+	drop: function() {
+	   console.log('DictView clear');
+	   if (confirm('Drop dictionary ' + this.model.get('name') + '?')) {
+	       this.model.destroy();
+		   console.log('dropped');
+			app.DictionaryRouter.navigate("/", {trigger: true});
+		} else {
+		   console.log('canceled');
+		}
+	}
+	
 
   });
 	

@@ -6,6 +6,7 @@
 GET  /                       			   controllers.Application.index()
 GET  /dictionaries                         controllers.Dictionaries.listAll() 
 POST /dictionaries                         controllers.Dictionaries.add() 
+DELETE  /dictionaries/:dictionary      	   controllers.Dictionaries.delete(dictionary: Long) 
 GET  /dictionaries/:dictionary/words       controllers.Dictionaries.view(dictionary: Long) 
 POST /dictionaries/:dictionary/words       controllers.Dictionaries.addWord(dictionary: Long)
 PUT 	/dictionaries/:dictionary/words/:word       controllers.Dictionaries.modifyWord(dictionary: Long, word: Long)

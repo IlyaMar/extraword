@@ -35,9 +35,9 @@ var app = app || {};
 				return;
 			}
 		
-			var a = {'name' : name, 'description' : description};
-			var d = app.dict_list.create(a, {wait: true});
-			console.log("dict created");
+			var d = {'name' : name, 'description' : description};
+			var dict = app.dict_list.create(d, {wait: true});
+			//console.log("dict created");
 			
 			app.DictionaryRouter.navigate("/", {trigger: true});
 		},
