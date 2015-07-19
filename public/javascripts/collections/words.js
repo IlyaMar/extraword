@@ -24,6 +24,6 @@ var app = app || {};
     },
   });
   // global collection of words.
-  app.Words = new WordList();
+  app.word_list = new WordList();
   
 })();

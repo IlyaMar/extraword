@@ -34,9 +34,9 @@ var app = app || {};
 
 		selectDict: function(id) {
 			var dict = app.dict_list.get(id);
-			app.Words.resetUrl(id);
-			app.Words.fetch();
-			this.loadView(new app.DictView({dict: dict, words: app.Words}));
+			app.word_list.resetUrl(id);
+			app.word_list.fetch();
+			this.loadView(new app.DictView({dict: dict, words: app.word_list}));
 		},
 
 		login: function() {
@@ -50,11 +50,12 @@ var app = app || {};
 		},
 		
 		exercise : function () {
-			this.loadView(new app.ExerciseView());
+			var v = new app.ExerciseView({collection : app.word_list});
+			this.loadView(v);
 		},
 		
 		loadView : function(view) {
-			console.log('DictionaryRouter loadView, view el #' + view.el.id);
+			console.log('DictionaryRouter loadView, #' + view.id);
 			this.view && (this.view.close ? this.view.close() : this.view.remove());
 			this.view = view;
 			document.body.appendChild( this.view.render().el );

@@ -27,15 +27,13 @@ var app = app || {};
 			this.wordsAsked = 1;	// current exercise statistics
 			this.wordsCorrect = 0;
 			
-			//this.render();
-			//app.Words.fetch();
-			console.log(app.Words.size());
+			console.log(this.collection.size());
 		},
 
 		render: function() {
-			if (this.wordIndex < app.Words.size()) {
+			if (this.wordIndex < this.collection.size()) {
 				console.log("ExerciseView render 1");
-				var word = app.Words.at(this.wordIndex);
+				var word = this.collection.at(this.wordIndex);
 				this.$el.html(this.template( {'forward' : word.get('forward'), 
 											  'backward' : word.get('backward') })
 											  );
@@ -53,10 +51,11 @@ var app = app || {};
 		
 		correct: function() {
 			console.log("ExView correct");
-			var word = app.Words.at(this.wordIndex);
+			var word = this.collection.at(this.wordIndex);
 			this.currentRight++;
 			this.currentWrong--;
 			this.wordsCorrect++;
+			this.nextWord();
 		},
 		
 		check: function() {
@@ -66,7 +65,7 @@ var app = app || {};
 		
 		nextWord: function() {
 			console.log("ExView next");
-			var word = app.Words.at(this.wordIndex);
+			var word = this.collection.at(this.wordIndex);
 			this.currentWrong++;
 			word.save({right : this.currentRight, wrong : this.currentWrong });
 			this.wordsAsked++;

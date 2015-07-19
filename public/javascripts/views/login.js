@@ -13,6 +13,7 @@ var app = app || {};
 		events: {
 		  'click .ok': 'login',
           'keypress #user-password': 'keypress',
+  		   'click #login-as-ilya':  'login_as_ilya'
 		},
 		
 		initialize: function() {
@@ -31,6 +32,12 @@ var app = app || {};
 			this.login();
 		},
 
+		login_as_ilya: function() {
+			this.$('#user-name').val('Ilya');
+			this.$('#user-password').val('deepblueland');
+			this.login();
+		},
+		
 		login: function() {
 			var d = {userName: this.$('#user-name').val().trim(),	password: this.$('#user-password').val().trim()};
 			console.log('login with data');
