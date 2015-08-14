@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 
 import com.avaje.ebean.Expr;
 
-import play.db.ebean.Model;
+import com.avaje.ebean.Model;
 
 @Entity
 public class Learned extends Model {
@@ -22,14 +22,14 @@ public class Learned extends Model {
     @OneToOne
     public User user;
 
-    public long right;
+    public long correct;
     public long wrong;
 
     
     public Learned(Word w, User u) {
     	word = w;
     	user = u;
-    	right = 0;
+    	correct = 0;
     	wrong = 0;
     }
 

@@ -37,7 +37,7 @@ var app = app || {};
 				this.$el.html(this.template( {'forward' : word.get('forward'), 
 											  'backward' : word.get('backward') })
 											  );
-				this.currentRight = word.get('right');
+				this.currentRight = word.get('correct');
 				this.currentWrong = word.get('wrong');
 			}
 			else {
@@ -67,7 +67,7 @@ var app = app || {};
 			console.log("ExView next");
 			var word = this.collection.at(this.wordIndex);
 			this.currentWrong++;
-			word.save({right : this.currentRight, wrong : this.currentWrong });
+			word.save({correct : this.currentRight, wrong : this.currentWrong });
 			this.wordsAsked++;
 			this.wordIndex++;	// now iterating is linear, plans to make it random
 			this.render();

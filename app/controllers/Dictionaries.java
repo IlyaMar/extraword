@@ -44,31 +44,20 @@ public class Dictionaries extends Controller {
 		for (Word w : d.words) {
 			JsonNode jw = Json.toJson(w);
 			ObjectNode o = (ObjectNode) jw;
-			long right = 0, wrong = 0;
+			long correct = 0, wrong = 0;
 			if ( u != null) {
 				Learned l = null;
 				l = Learned.getOne(w, u);
 				if (l != null) {
-					right = l.right;
+					correct = l.correct;
 					wrong = l.wrong;
 				}
 			}	
-			o.put("right", right);
-			o.put("wrong", wrong);
+			o.put("correct", correct);
 			o.put("wrong", wrong);
 			a.add(jw);
 		}
-		return ok(a);		
-		
-		/*JsonNode words = Json.toJson(d.words);
-		for (JsonNode w : words) {
-			long wordId = w.path("id").asLong();
-			
-			System.out.println("node " + w.path("forward"));
-			
-		}
-		
-		return ok(words);*/		
+		return ok(a);				
 	}
 
 	@BodyParser.Of(BodyParser.Json.class)
@@ -133,7 +122,7 @@ public class Dictionaries extends Controller {
 			l = Learned.create(w, u);
 		
 
-		l.right = json.findPath("right").asLong();
+		l.correct = json.findPath("correct").asLong();
 		l.wrong = json.findPath("wrong").asLong();
 		l.save();
 

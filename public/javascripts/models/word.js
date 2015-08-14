@@ -7,7 +7,7 @@ var app = app || {};
 		defaults: {
 			forward: '',
 			backward: '',
-			right: 0,
+			correct: 0,
 			wrong: 0,
 			completed: false		// marked as already learned
 		},

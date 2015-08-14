@@ -68,14 +68,4 @@
     dictionary:    *ukraine
     
 # Learned
-- !!models.Learned
-    right:  2
-    wrong: 4
-    word:    *w1
-    user:  *jane
 
-- !!models.Learned
-    right:  1
-    wrong: 1
-    word:    *w2
-    user:  *jane

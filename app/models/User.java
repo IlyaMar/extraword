@@ -1,11 +1,13 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Id;
 
-import play.db.ebean.Model;
+import com.avaje.ebean.Model;
 
 @Entity
+@Table(name = "appuser")
 public class User extends Model {
 
     @Id
